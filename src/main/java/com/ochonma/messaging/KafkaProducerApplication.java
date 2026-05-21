@@ -43,19 +43,14 @@ public class KafkaProducerApplication implements CommandLineRunner {
     }
 
 	@Override
-	public void run(String... args)
-        {
+	public void run(String... args) throws InterruptedException {
             try {
                 sendMessageToKafka("test","msg1","Its going to be fun");
-            }
-            catch (InterruptedException e) {
-                logger.error("Interruption exception", e);
-            }
-            catch (ExecutionException e) {
+            } catch (ExecutionException e) {
                 logger.error("execution exception", e);
             }
             catch (Exception e) {
-                logger.error("Error sending message to Kafka", e);
+                logger.error("Fatal error sending message to Kafka", e);
             }
     }
 }
