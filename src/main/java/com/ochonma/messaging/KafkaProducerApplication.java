@@ -36,7 +36,7 @@ public class KafkaProducerApplication implements CommandLineRunner {
             ProducerRecord<String, String> producerRecord = new ProducerRecord<>(topic, key, value);
             Future<RecordMetadata> callBack = producer.send(producerRecord);
             RecordMetadata metaData = callBack.get();
-            if (logger.isInfoEnabled()) {
+            if (logger.isInfoEnabled() && metaData != null) {
                 logger.info("message sent to topic {} partition {} offset {}", metaData.topic(), metaData.partition(), metaData.offset());
             }
         }
